@@ -15,10 +15,12 @@ app.use(
 );
 app.use(helmet());
 app.use((req, res, next) => gatewayRateLImiter(req, res, next));
-const proxyServer = (req, res, targetPort, targetHost) => {
+const proxyServer = (req, res, targetUrl) => {
+  const url = new URL(targetUrl);
   const options = {
-    port: targetPort,
-    hostname: targetHost,
+    protocol: url.protocol,
+    port: url.port,
+    hostname: url.hostname,
     path: req.url,
     method: req.method,
     headers: req.headers,
@@ -46,7 +48,7 @@ const proxyServer = (req, res, targetPort, targetHost) => {
       res.end();
     })
   */
- 
+
   // error handling
   proxy.on("error", (err) => {
     logger.error("Proxy request error:", err.message);
@@ -75,19 +77,19 @@ const proxyServer = (req, res, targetPort, targetHost) => {
 };
 
 app.use("/IDENTITY/", (req, res) => {
-  proxyServer(req, res, 4001, "localhost");
+  proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
 app.use("/POST/", (req, res) => {
-  proxyServer(req, res, 4002, "localhost");
+  proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
 app.use("/SEARCH/", (req, res) => {
-  proxyServer(req, res, 4003, "localhost");
+  proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
 app.use("/MEDIA/", (req, res) => {
-  proxyServer(req, res, 4004, "localhost");
+  proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
 app.use("/GEO_LOCATION/", (req, res) => {
-  proxyServer(req, res, 4005, "localhost");
+  proxyServer(req, res, process.env.GEO_LOCATION_SERVICE_URL);
 });
 
 app.listen(PORT, () => {
