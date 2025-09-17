@@ -1,4 +1,4 @@
-const logger = require("../../../1.INDENTITY_SERVICE/src/utils/logger");
+const logger = require("./logger");
 
 const GatewayRateLimiterStore = new Map();
 
