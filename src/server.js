@@ -18,16 +18,17 @@ app.use(helmet());
 app.use((req, res, next) => gatewayRateLImiter(req, res, next));
 const proxyServer = (req, res, targetUrl) => {
   const url = new URL(req.url, targetUrl);
+  console.log(url);
   const options = {
     protocol: url.protocol,
     port: url.port,
-    hostname: url.hostname,
+    hostname: url.pathname,
     path: req.url,
     method: req.method,
     headers: req.headers,
   };
+   console.log(options);
   const lib = url.protocol === "https:" ? https : http;
-
   const proxy = lib.request(options, (proxyRes) => {
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
     proxyRes.pipe(res, {end: true}); // alternate of
@@ -53,7 +54,7 @@ const proxyServer = (req, res, targetUrl) => {
 
   // error handling
   proxy.on("error", (err) => {
-    logger.error("Proxy request error:", err.message);
+    logger.error("Proxy request error:", err);
     if (!res.headersSent) {
       res.writeHead(502, {"Content-Type": "text/plain"});
     }

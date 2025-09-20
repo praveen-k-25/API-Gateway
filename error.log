@@ -18,3 +18,14 @@
 {"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
 {"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
 {"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","level":"error","message":"Proxy request error:"}
+{"Service":"API GATEWAY","code":"UNABLE_TO_VERIFY_LEAF_SIGNATURE","level":"error","message":"Proxy request error: unable to verify the first certificate","stack":"Error: unable to verify the first certificate\n    at TLSSocket.onConnectSecure (node:_tls_wrap:1679:34)\n    at TLSSocket.emit (node:events:518:28)\n    at TLSSocket._finishInit (node:_tls_wrap:1078:8)\n    at ssl.onhandshakedone (node:_tls_wrap:864:12)"}
+{"Service":"API GATEWAY","code":"UNABLE_TO_VERIFY_LEAF_SIGNATURE","level":"error","message":"Proxy request error: unable to verify the first certificate","stack":"Error: unable to verify the first certificate\n    at TLSSocket.onConnectSecure (node:_tls_wrap:1679:34)\n    at TLSSocket.emit (node:events:518:28)\n    at TLSSocket._finishInit (node:_tls_wrap:1078:8)\n    at ssl.onhandshakedone (node:_tls_wrap:864:12)"}
+{"Service":"API GATEWAY","code":"UNABLE_TO_VERIFY_LEAF_SIGNATURE","level":"error","message":"Proxy request error: unable to verify the first certificate","stack":"Error: unable to verify the first certificate\n    at TLSSocket.onConnectSecure (node:_tls_wrap:1679:34)\n    at TLSSocket.emit (node:events:518:28)\n    at TLSSocket._finishInit (node:_tls_wrap:1078:8)\n    at ssl.onhandshakedone (node:_tls_wrap:864:12)"}
