@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 app.use(
   cors({
-    origin: "*",
+    origin: ["https://api-gateway-aojr.onrender.com", "http://localhost:5173"],
   })
 );
 app.use(helmet());
@@ -25,9 +25,9 @@ const proxyServer = (req, res, targetUrl) => {
     hostname: url.hostname,
     path: url.pathname,
     method: req.method,
-    headers: req.headers,
+    headers: {...req.headers, host: url.hostname},
   };
-   console.log(options);
+  console.log(options);
   const lib = url.protocol === "https:" ? https : http;
   const proxy = lib.request(options, (proxyRes) => {
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
