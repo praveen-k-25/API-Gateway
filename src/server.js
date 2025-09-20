@@ -22,8 +22,8 @@ const proxyServer = (req, res, targetUrl) => {
   const options = {
     protocol: url.protocol,
     port: url.port,
-    hostname: url.pathname,
-    path: req.url,
+    hostname: url.hostname,
+    path: url.pathname,
     method: req.method,
     headers: req.headers,
   };
