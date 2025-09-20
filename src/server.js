@@ -19,15 +19,13 @@ app.use((req, res, next) => gatewayRateLImiter(req, res, next));
 const proxyServer = (req, res, targetUrl) => {
 
   const url = new URL(req.url, targetUrl);
-  console.log("Url : ",url)
-  console.log("Target Url : ",targetUrl)
   const options = {
-    protocol: url.protocol,
-    port: url.port,
-    hostname: url.hostname,
+    protocol: targetUrl.protocol,
+    port: targetUrl.port,
+    hostname: targetUrl.hostname,
     path: url.pathname,
     method: req.method,
-    headers: {...req.headers, host: url.hostname},
+    headers: {...req.headers, host: targetUrl.hostname},
   };
   console.log("Proxying request:", options);
   const proxy = https.request(options, (proxyRes) => {
