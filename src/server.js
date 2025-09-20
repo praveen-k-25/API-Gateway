@@ -26,30 +26,13 @@ const proxyServer = (req, res, targetUrl) => {
     method: req.method,
     headers: {...req.headers, host: url.hostname},
   };
-  console.log(options);
+  console.log("Proxying request:", options);
   const proxy = https.request(options, (proxyRes) => {
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
-    proxyRes.pipe(res, {end: true}); // alternate of
-    /* 
-      req.on("data", (chunk)=>{
-        proxy.write(chunk);
-      })
-      req.on("end",()=>{
-        proxy.end();
-      })
-    */
+    proxyRes.pipe(res, {end: true});
   });
 
-  req.pipe(proxy, {end: true}); // alternate to
-  /* 
-    proxyRes.on("data", (chunk)=>{
-      res.write(chunk);
-    })
-    proxyRes.on("end",()=>{
-      res.end();
-    })
-  */
-
+  req.pipe(proxy, {end: true});
   // error handling
   proxy.on("error", (err) => {
     logger.error("Proxy request error:", err);
