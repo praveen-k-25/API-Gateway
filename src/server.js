@@ -17,15 +17,15 @@ app.use(
 app.use(helmet());
 app.use((req, res, next) => gatewayRateLImiter(req, res, next));
 const proxyServer = (req, res, targetUrl) => {
-
+  console.log("Target URL :", targetUrl);
   const url = new URL(req.url, targetUrl);
   const options = {
-    protocol: targetUrl.protocol,
-    port: targetUrl.port,
-    hostname: targetUrl.hostname,
+    protocol: url.protocol,
+    port: url.port,
+    hostname: url.hostname,
     path: url.pathname,
     method: req.method,
-    headers: {...req.headers, host: targetUrl.hostname},
+    headers: {...req.headers, host: url.hostname},
   };
   console.log("Proxying request:", options);
   const proxy = https.request(options, (proxyRes) => {
