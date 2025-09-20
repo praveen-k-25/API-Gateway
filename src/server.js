@@ -17,7 +17,10 @@ app.use(
 app.use(helmet());
 app.use((req, res, next) => gatewayRateLImiter(req, res, next));
 const proxyServer = (req, res, targetUrl) => {
+
   const url = new URL(req.url, targetUrl);
+  console.log("Url : ",url)
+  console.log("Target Url : ",targetUrl)
   const options = {
     protocol: url.protocol,
     port: url.port,
