@@ -18,7 +18,6 @@ app.use(helmet());
 app.use((req, res, next) => gatewayRateLImiter(req, res, next));
 const proxyServer = (req, res, targetUrl) => {
   const url = new URL(req.url, targetUrl);
-  console.log(url);
   const options = {
     protocol: url.protocol,
     port: url.port,
@@ -28,8 +27,7 @@ const proxyServer = (req, res, targetUrl) => {
     headers: {...req.headers, host: url.hostname},
   };
   console.log(options);
-  const lib = url.protocol === "https:" ? https : http;
-  const proxy = lib.request(options, (proxyRes) => {
+  const proxy = https.request(options, (proxyRes) => {
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
     proxyRes.pipe(res, {end: true}); // alternate of
     /* 
