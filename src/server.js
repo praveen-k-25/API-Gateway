@@ -63,7 +63,7 @@ const proxyServer = (req, res, targetUrl) => {
 app.use("/IDENTITY/", (req, res) => {
   proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
-app.use("/POST/", (req, res) => {
+/* app.use("/POST/", (req, res) => {
   proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 });
 app.use("/SEARCH/", (req, res) => {
@@ -71,8 +71,8 @@ app.use("/SEARCH/", (req, res) => {
 });
 app.use("/MEDIA/", (req, res) => {
   proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
-});
-app.use("/GEO_LOCATION/", (req, res) => {
+}); */
+app.use("/LOCATION", (req, res) => {
   proxyServer(req, res, process.env.GEO_LOCATION_SERVICE_URL);
 });
 
