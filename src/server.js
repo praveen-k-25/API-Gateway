@@ -74,7 +74,7 @@ app.use("/MEDIA/", (req, res) => {
   proxyServer(req, res, process.env.IDENTITY_SERVICE_URL);
 }); */
 app.use("/LOCATION", (req, res) => {
-  proxyServer(req, res, process.env.GEO_LOCATION_SERVICE_URL);
+  proxyServer(req, res, process.env.LOCATION_URL);
 });
 
 app.listen(PORT, () => {
